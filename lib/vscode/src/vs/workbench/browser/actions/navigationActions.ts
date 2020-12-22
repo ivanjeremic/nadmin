@@ -287,7 +287,7 @@ class GoHomeContributor implements IWorkbenchContribution {
 					super({
 						id: `workbench.actions.goHome`,
 						title: nls.localize('goHome', "Go Home"),
-						menu: { id: MenuId.MenubarWebNavigationMenu }
+						menu: { id: MenuId.MenubarHomeMenu }
 					});
 				}
 				async run(): Promise<void> {

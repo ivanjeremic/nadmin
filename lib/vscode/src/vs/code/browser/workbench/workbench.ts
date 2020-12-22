@@ -496,6 +496,7 @@ class WindowIndicator implements IWindowIndicator {
 	// Finally create workbench
 	create(document.body, {
 		...config,
+		logLevel: logLevel ? parseLogLevel(logLevel) : undefined,
 		settingsSyncOptions,
 		windowIndicator,
 		productQualityChangeHandler,

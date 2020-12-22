@@ -92,10 +92,6 @@
 	margin-bottom: auto;
 }
 
-.monaco-workbench .activitybar > .content > .composite-bar-excess {
-	height: 100%;
-}
-
 /** Menu Bar */
 
 .monaco-workbench .activitybar .menubar {
