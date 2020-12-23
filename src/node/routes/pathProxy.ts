@@ -11,9 +11,9 @@ export const router = Router()
 const getProxyTarget = (req: Request, rewrite: boolean): string => {
   if (rewrite) {
     const query = qs.stringify(req.query)
-    return `http://0.0.0.0:${req.params.port}/${req.params[0] || ""}${query ? `?${query}` : ""}`
+    return `http://0.0.0.0:${req.params.port}/proxy/${req.params.port}${req.params[0] || ""}${query ? `?${query}` : ""}`
   }
-  return `http://0.0.0.0:${req.params.port}/${req.originalUrl}`
+  return `http://0.0.0.0:${req.params.port}${req.originalUrl}`
 }
 
 router.all("/(:port)(/*)?", (req, res) => {
@@ -33,7 +33,7 @@ router.all("/(:port)(/*)?", (req, res) => {
 
   proxy.web(req, res, {
     ignorePath: true,
-    target: getProxyTarget(req, true),
+    target: getProxyTarget(req, false),
   })
 })
 
