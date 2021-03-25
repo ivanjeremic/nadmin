@@ -2,11 +2,11 @@
 set -euo pipefail
 
 pushd() {
-  builtin pushd "$@" > /dev/null
+  builtin pushd "$@" >/dev/null
 }
 
 popd() {
-  builtin popd > /dev/null
+  builtin popd >/dev/null
 }
 
 pkg_json_version() {
@@ -75,7 +75,7 @@ download_artifact() {
   local tmp_file
   tmp_file="$(mktemp)"
 
-  curl -fsSL "$(get_artifact_url "$artifact_name")" > "$tmp_file"
+  curl -fsSL "$(get_artifact_url "$artifact_name")" >"$tmp_file"
   unzip -q -o "$tmp_file" -d "$dst"
   rm "$tmp_file"
 }
@@ -103,7 +103,7 @@ RELEASE_PATH="${RELEASE_PATH-release}"
 # Code itself but also extensions will look specifically in this directory for
 # files (like the ripgrep binary or the oniguruma wasm).
 symlink_asar() {
-  if [ ! -e node_modules.asar ]; then
+  if [ ! -L node_modules.asar ]; then
     if [ "${WINDIR-}" ]; then
       # mklink takes the link name first.
       mklink /J node_modules.asar node_modules
